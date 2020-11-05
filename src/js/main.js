@@ -1,5 +1,7 @@
 'use strict';
 
-import showModal from './modules/modal';
+import './services/slider';
 
-showModal();
+import modal from './modules/modal';
+
+modal();
