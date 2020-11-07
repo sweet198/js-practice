@@ -14866,7 +14866,7 @@ var modals = function modals() {
   function useModals(modalSelector, closeSelector, triggerSelector) {
     var triggers = document.querySelectorAll(triggerSelector);
     var modal = document.querySelector(modalSelector);
-    var closes = document.querySelectorAll(closeSelector);
+    var close = document.querySelector(closeSelector);
     triggers.forEach(function (trigger) {
       trigger.addEventListener('click', function (e) {
         if (e.target) {
@@ -14885,16 +14885,14 @@ var modals = function modals() {
         document.body.classList.remove('modal-open');
       }
     });
-    closes.forEach(function (close) {
-      close.addEventListener('click', function () {
-        modal.classList.remove('show');
-        document.body.classList.remove('modal-open');
-      });
+    close.addEventListener('click', function () {
+      modal.classList.remove('show');
+      document.body.classList.remove('modal-open');
     });
   }
 
-  useModals('.popup_engineer', '.popup_close', '.popup_engineer_btn');
-  useModals('.popup', '.popup_close', '.phone_link');
+  useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
+  useModals('.popup', '.popup .popup_close', '.phone_link');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);

@@ -5,7 +5,7 @@ const modals = () => {
     function useModals(modalSelector, closeSelector, triggerSelector) {
         const triggers = document.querySelectorAll(triggerSelector);
         const modal = document.querySelector(modalSelector);
-        const closes = document.querySelectorAll(closeSelector);
+        const close = document.querySelector(closeSelector);
 
         triggers.forEach(trigger => {
             trigger.addEventListener('click', (e) => {
@@ -26,16 +26,14 @@ const modals = () => {
             }
         });
 
-        closes.forEach(close => {
-            close.addEventListener('click', () => {
-                modal.classList.remove('show');
-                document.body.classList.remove('modal-open');
-            });
+        close.addEventListener('click', () => {
+            modal.classList.remove('show');
+            document.body.classList.remove('modal-open');
         });
     }
 
-    useModals('.popup_engineer', '.popup_close', '.popup_engineer_btn');
-    useModals('.popup', '.popup_close', '.phone_link');
+    useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
+    useModals('.popup', '.popup .popup_close', '.phone_link');
 }
 
 export default modals;
