@@ -1,7 +1,8 @@
 'use strict';
 
 import './services/slider';
+import modals from './modules/modals';
 
-import modal from './modules/modal';
-
-modal();
+window.addEventListener('DOMContentLoaded', () => {
+    modals();
+})

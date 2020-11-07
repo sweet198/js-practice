@@ -14836,19 +14836,21 @@ module.exports = g;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/slider */ "./src/js/services/slider.js");
-/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
+/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
 
 
 
 
-Object(_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
+window.addEventListener('DOMContentLoaded', function () {
+  Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
+});
 
 /***/ }),
 
-/***/ "./src/js/modules/modal.js":
-/*!*********************************!*\
-  !*** ./src/js/modules/modal.js ***!
-  \*********************************/
+/***/ "./src/js/modules/modals.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/modals.js ***!
+  \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -14860,39 +14862,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function modal() {
-  var modalEngineer = document.querySelector('.popup_engineer');
-  var modalEngineerOpenBtn = document.querySelector('.popup_engineer_btn');
-  var modalCall = document.querySelector('.popup');
-  var modalCallOpensBtn = document.querySelectorAll('.phone_link');
+var modals = function modals() {
+  function useModals(modalSelector, closeSelector, triggerSelector) {
+    var triggers = document.querySelectorAll(triggerSelector);
+    var modal = document.querySelector(modalSelector);
+    var closes = document.querySelectorAll(closeSelector);
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener('click', function (e) {
+        if (e.target) {
+          e.preventDefault();
+        }
 
-  function modalOpen(modal, modalOpenBtn) {
-    modalOpenBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      modal.classList.add('show');
+        modal.classList.add('show');
+        document.body.classList.add('modal-open');
+      });
     });
-  }
-
-  modalOpen(modalEngineer, modalEngineerOpenBtn);
-  modalCallOpensBtn.forEach(function (modalCallOpenBtn) {
-    modalOpen(modalCall, modalCallOpenBtn);
-  });
-
-  function modalClose(modal) {
     modal.addEventListener('click', function (e) {
       var target = e.target;
 
-      if (target === modal || target.parentElement.classList.contains('popup_close')) {
+      if (target === modal) {
         modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
       }
+    });
+    closes.forEach(function (close) {
+      close.addEventListener('click', function () {
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+      });
     });
   }
 
-  modalClose(modalEngineer);
-  modalClose(modalCall);
-}
+  useModals('.popup_engineer', '.popup_close', '.popup_engineer_btn');
+  useModals('.popup', '.popup_close', '.phone_link');
+};
 
-/* harmony default export */ __webpack_exports__["default"] = (modal);
+/* harmony default export */ __webpack_exports__["default"] = (modals);
 
 /***/ }),
 
