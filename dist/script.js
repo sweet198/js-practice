@@ -14891,8 +14891,16 @@ var modals = function modals() {
     });
   }
 
+  function showModalByTime(modalSelector, time) {
+    setTimeout(function () {
+      document.querySelector(modalSelector).classList.add('show');
+      document.body.classList.add('modal-open');
+    }, time);
+  }
+
   useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
   useModals('.popup', '.popup .popup_close', '.phone_link');
+  showModalByTime('.popup', 3000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
