@@ -14837,12 +14837,15 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/slider */ "./src/js/services/slider.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+
 
 
 
 
 window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
 
 /***/ }),
@@ -14900,10 +14903,67 @@ var modals = function modals() {
 
   useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
   useModals('.popup', '.popup .popup_close', '.phone_link');
-  showModalByTime('.popup', 3000);
+  showModalByTime('.popup', 3000000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
+
+/***/ }),
+
+/***/ "./src/js/modules/tabs.js":
+/*!********************************!*\
+  !*** ./src/js/modules/tabs.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+
+function tabs() {
+  function useTabs(tabsLinksSelector, tabsSelector, activeClass) {
+    var tabsLinks = document.querySelectorAll(tabsLinksSelector);
+    var tabs = document.querySelectorAll(tabsSelector);
+
+    function hideTabs() {
+      tabs.forEach(function (tab) {
+        return tab.style.display = 'none';
+      });
+      tabsLinks.forEach(function (tabsLink) {
+        return tabsLink.classList.remove(activeClass);
+      });
+    }
+
+    hideTabs();
+
+    function showTab() {
+      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      tabs[i].style.display = 'block';
+      tabsLinks[i].classList.add(activeClass);
+    }
+
+    showTab();
+    tabsLinks.forEach(function (tabsLink, i) {
+      tabsLink.addEventListener('click', function (e) {
+        console.log(tabsLink, e.target);
+        e.preventDefault();
+        hideTabs();
+        showTab(i);
+      });
+    });
+  } // const tabsLinks = document.querySelectorAll('.glazing_block a');
+  // const tabs = document.querySelectorAll('.glazing_content');
+
+
+  useTabs('.glazing_block a', '.glazing_content', 'active');
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (tabs);
 
 /***/ }),
 
