@@ -178,10 +178,6 @@ textarea:focus {
   background-size: 70%;
 }
 
-.show {
-  display: flex;
-}
-
 /*Header*/
 .header {
   height: 10rem;

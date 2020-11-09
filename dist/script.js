@@ -14950,17 +14950,15 @@ function tabs() {
     showTab();
     tabsLinks.forEach(function (tabsLink, i) {
       tabsLink.addEventListener('click', function (e) {
-        console.log(tabsLink, e.target);
         e.preventDefault();
         hideTabs();
         showTab(i);
       });
     });
-  } // const tabsLinks = document.querySelectorAll('.glazing_block a');
-  // const tabs = document.querySelectorAll('.glazing_content');
-
+  }
 
   useTabs('.glazing_block a', '.glazing_content', 'active');
+  useTabs('.decoration_item div', '.decoration_content > .row > div', 'after_click');
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (tabs);
