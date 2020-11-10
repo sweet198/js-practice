@@ -1,6 +1,6 @@
 'use strict'
 
-function tabs() {
+const tabs = ()  => {
 
     function useTabs(tabsLinksSelector, tabsSelector, activeClass) {
         const tabsLinks = document.querySelectorAll(tabsLinksSelector);
