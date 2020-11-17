@@ -41,6 +41,7 @@ const modals = () => {
 
     useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
     useModals('.popup', '.popup .popup_close', '.phone_link');
+    useModals('.popup_calc', '.popup_calc_close', '.popup_calc_btn');
     // showModalByTime('.popup', 60000);
 }
 
