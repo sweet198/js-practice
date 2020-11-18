@@ -1,9 +1,15 @@
 'use strict'
 
-import modals from "./modals";
+const forms = () => {
+    const form = document.querySelectorAll('form');
+    const inputs = document.querySelectorAll('input');
+    const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
 
-const forms = (formSelector) => {
-    const forms = document.querySelectorAll(formSelector);
+    phoneInputs.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/\D/, '');
+        });
+    });
 
     const message = {
         loading: 'Идет отправка',
@@ -11,37 +17,46 @@ const forms = (formSelector) => {
         failure: 'Ошибка',
     };
 
-    forms.forEach((form, id) => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            let formData = new FormData(form);
-            formData.append("id", `${id}`);
-
-            let obj = {};
-            formData.forEach((value, key) => {
-                obj[key] = value;
-            });
-            console.log(obj);
-            getResource('http://localhost:3000/people', obj)
-                .catch(err => console.error(message.failure));
-        }, {'once': true});
-    });
-
-    async function getResource(url, data) {
-        const res = await fetch(`${url}`, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
+    const postData = async (url, data) => {
+        document.querySelector('.status').textContent = message.loading;
+        let res = await fetch(url, {
+            method: 'POST',
+            body: data
         });
 
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
-        return await res.json();
+        return await res.text();
     }
-}
+
+    const clearInputs = () => {
+        inputs.forEach(item => {
+            item.value = '';
+        })
+    }
+
+    form.forEach(item => {
+        item.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            item.appendChild(statusMessage);
+
+            const formData = new FormData(item);
+
+            postData('assets/server.php', formData)
+                .then(res => {
+                    console.log(res);
+                    statusMessage.textContent = message.success;
+                })
+                .catch(() => statusMessage.textContent = message.failure)
+                .finally(() => {
+                    clearInputs();
+                    setTimeout(() => {
+                        statusMessage.remove();
+                    }, 5000);
+                });
+        });
+    });
+};
 
 export default forms
