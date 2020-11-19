@@ -1,5 +1,12 @@
 'use strict';
 
+const showModal = (modalSelector) => {
+    const modal = document.querySelector(modalSelector);
+
+    modal.classList.add('show');
+    document.body.classList.add('modal-open');
+}
+
 const modals = () => {
 
     function useModals(modalSelector, closeSelector, triggerSelector) {
@@ -13,8 +20,7 @@ const modals = () => {
                 if (e.target) {
                     e.preventDefault();
                 }
-                modal.classList.add('show');
-                document.body.classList.add('modal-open');
+                showModal(modalSelector);
             });
         });
 
@@ -33,16 +39,13 @@ const modals = () => {
     }
 
     function showModalByTime(modalSelector, time) {
-        setTimeout(() => {
-            document.querySelector(modalSelector).classList.add('show');
-            document.body.classList.add('modal-open');
-        }, time);
+        setTimeout(() => showModal(modalSelector), time);
     }
 
     useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
     useModals('.popup', '.popup .popup_close', '.phone_link');
     useModals('.popup_calc', '.popup_calc_close', '.popup_calc_btn');
-    // showModalByTime('.popup', 60000);
+    showModalByTime('.popup', 5000);
 }
 
 export default modals;
