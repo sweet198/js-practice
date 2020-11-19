@@ -18028,6 +18028,7 @@ var tabs = function tabs() {
 
   useTabs('.glazing_block a', '.glazing_content', 'active');
   useTabs('.decoration_item div', '.decoration_content > .row > div', 'after_click');
+  useTabs('.balcon_icons_img ', '.big_img img', 'do_image_more');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (tabs);
