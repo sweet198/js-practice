@@ -1,6 +1,8 @@
 'use strict'
 
-const forms = () => {
+import {closeModal} from './modals';
+
+const forms = (modalSelector) => {
     const form = document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
     const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
@@ -51,6 +53,7 @@ const forms = () => {
                 .catch(() => statusMessage.textContent = message.failure)
                 .finally(() => {
                     clearInputs();
+                    closeModal(modalSelector);
                     setTimeout(() => {
                         statusMessage.remove();
                     }, 5000);

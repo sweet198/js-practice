@@ -7,6 +7,13 @@ const showModal = (modalSelector) => {
     document.body.classList.add('modal-open');
 }
 
+const closeModal = (modalSelector) => {
+    const modal = document.querySelector(modalSelector);
+
+    modal.classList.remove('show');
+    document.body.classList.remove('modal-open');
+}
+
 const modals = () => {
 
     function useModals(modalSelector, closeSelector, triggerSelector) {
@@ -27,14 +34,12 @@ const modals = () => {
         modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target === modal) {
-                modal.classList.remove('show');
-                document.body.classList.remove('modal-open');
+                closeModal(modalSelector);
             }
         });
 
         close.addEventListener('click', () => {
-            modal.classList.remove('show');
-            document.body.classList.remove('modal-open');
+            closeModal(modalSelector);
         });
     }
 
@@ -49,3 +54,4 @@ const modals = () => {
 }
 
 export default modals;
+export {showModal, closeModal};
