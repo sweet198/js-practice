@@ -2,7 +2,7 @@
 
 const tabs = ()  => {
 
-    function useTabs(tabsLinksSelector, tabsSelector, activeClass) {
+    function useTabs(tabsLinksSelector, tabsSelector, activeClass, display = 'block') {
         const tabsLinks = document.querySelectorAll(tabsLinksSelector);
         const tabs = document.querySelectorAll(tabsSelector);
 
@@ -14,7 +14,7 @@ const tabs = ()  => {
         hideTabs();
 
         function showTab(i = 0) {
-            tabs[i].style.display = 'block';
+            tabs[i].style.display = display;
             tabsLinks[i].classList.add(activeClass);
         }
 
@@ -31,7 +31,7 @@ const tabs = ()  => {
 
     useTabs('.glazing_block a', '.glazing_content', 'active');
     useTabs('.decoration_item div', '.decoration_content > .row > div', 'after_click');
-    useTabs('.balcon_icons_img ', '.big_img img', 'do_image_more');
+    useTabs('.balcon_icons_img ', '.big_img img', 'do_image_more', 'inline-block');
 }
 
 export default tabs;

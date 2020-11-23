@@ -4,23 +4,29 @@ const showModal = (modalSelector) => {
     const modal = document.querySelector(modalSelector);
 
     modal.classList.add('show');
+    modal.classList.remove('hide');
     document.body.classList.add('modal-open');
 }
 
 const closeModal = (modalSelector) => {
     const modal = document.querySelector(modalSelector);
+    const windows = document.querySelectorAll('[data-modal]');
 
     modal.classList.remove('show');
+    modal.classList.add('hide');
     document.body.classList.remove('modal-open');
+    windows.forEach(item => {
+        console.log(item);
+        item.classList.remove('show');
+    });
 }
 
 const modals = () => {
 
-    function useModals(modalSelector, closeSelector, triggerSelector) {
+    function useModals(modalSelector, closeSelector, triggerSelector, closeClickOverlay = true) {
         const triggers = document.querySelectorAll(triggerSelector);
         const modal = document.querySelector(modalSelector);
         const close = document.querySelector(closeSelector);
-
 
         triggers.forEach(trigger => {
             trigger.addEventListener('click', (e) => {
@@ -33,7 +39,7 @@ const modals = () => {
 
         modal.addEventListener('click', (e) => {
             const target = e.target;
-            if (target === modal) {
+            if (target === modal && closeClickOverlay) {
                 closeModal(modalSelector);
             }
         });

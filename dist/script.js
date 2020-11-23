@@ -17981,17 +17981,25 @@ __webpack_require__.r(__webpack_exports__);
 var showModal = function showModal(modalSelector) {
   var modal = document.querySelector(modalSelector);
   modal.classList.add('show');
+  modal.classList.remove('hide');
   document.body.classList.add('modal-open');
 };
 
 var closeModal = function closeModal(modalSelector) {
   var modal = document.querySelector(modalSelector);
+  var windows = document.querySelectorAll('[data-modal]');
   modal.classList.remove('show');
+  modal.classList.add('hide');
   document.body.classList.remove('modal-open');
+  windows.forEach(function (item) {
+    console.log(item);
+    item.classList.remove('show');
+  });
 };
 
 var modals = function modals() {
   function useModals(modalSelector, closeSelector, triggerSelector) {
+    var closeClickOverlay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
     var triggers = document.querySelectorAll(triggerSelector);
     var modal = document.querySelector(modalSelector);
     var close = document.querySelector(closeSelector);
@@ -18007,7 +18015,7 @@ var modals = function modals() {
     modal.addEventListener('click', function (e) {
       var target = e.target;
 
-      if (target === modal) {
+      if (target === modal && closeClickOverlay) {
         closeModal(modalSelector);
       }
     });
@@ -18052,6 +18060,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var tabs = function tabs() {
   function useTabs(tabsLinksSelector, tabsSelector, activeClass) {
+    var display = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'block';
     var tabsLinks = document.querySelectorAll(tabsLinksSelector);
     var tabs = document.querySelectorAll(tabsSelector);
 
@@ -18068,7 +18077,7 @@ var tabs = function tabs() {
 
     function showTab() {
       var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      tabs[i].style.display = 'block';
+      tabs[i].style.display = display;
       tabsLinks[i].classList.add(activeClass);
     }
 
@@ -18084,7 +18093,7 @@ var tabs = function tabs() {
 
   useTabs('.glazing_block a', '.glazing_content', 'active');
   useTabs('.decoration_item div', '.decoration_content > .row > div', 'after_click');
-  useTabs('.balcon_icons_img ', '.big_img img', 'do_image_more');
+  useTabs('.balcon_icons_img ', '.big_img img', 'do_image_more', 'inline-block');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (tabs);
