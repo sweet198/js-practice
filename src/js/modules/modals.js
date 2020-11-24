@@ -8,17 +8,22 @@ const showModal = (modalSelector) => {
     document.body.classList.add('modal-open');
 }
 
+const closeAllModals = () => {
+    const windows = document.querySelectorAll('[data-modal]');
+
+    windows.forEach(item => {
+        item.classList.remove('show');
+        item.classList.add('hide');
+    });
+}
+
 const closeModal = (modalSelector) => {
     const modal = document.querySelector(modalSelector);
-    const windows = document.querySelectorAll('[data-modal]');
 
     modal.classList.remove('show');
     modal.classList.add('hide');
     document.body.classList.remove('modal-open');
-    windows.forEach(item => {
-        console.log(item);
-        item.classList.remove('show');
-    });
+    closeAllModals();
 }
 
 const modals = () => {
@@ -33,6 +38,7 @@ const modals = () => {
                 if (e.target) {
                     e.preventDefault();
                 }
+                closeAllModals();
                 showModal(modalSelector);
             });
         });
@@ -56,10 +62,10 @@ const modals = () => {
     useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
     useModals('.popup', '.popup .popup_close', '.phone_link');
     useModals('.popup_calc', '.popup_calc_close', '.popup_calc_btn');
-    useModals('.popup_calc_profile', '.popup_calc_profile_close', '.popup_calc_button');
-    useModals('.popup_calc_end', '.popup_calc_end_close', '.popup_calc_profile_button');
+    useModals('.popup_calc_profile', '.popup_calc_profile_close', '.popup_calc_button', false);
+    useModals('.popup_calc_end', '.popup_calc_end_close', '.popup_calc_profile_button', false);
 
-    showModalByTime('.popup', 5000);
+    // showModalByTime('.popup', 5000);
 }
 
 export default modals;

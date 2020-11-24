@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 import {closeModal, showModal} from './modals';
@@ -21,4 +22,4 @@ const formCalc = (firstModalSelector, secondModalSelector, thirdModalSelector) =
     });
 }
 
-export default formCalc;
+export default formCalc;*/

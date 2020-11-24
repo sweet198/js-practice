@@ -17797,58 +17797,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
-/* harmony import */ var _modules_formCalc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/formCalc */ "./src/js/modules/formCalc.js");
 
 
 
 
  // import tabs from './modules/tabsExample';
 
-
+ // import formCalc from "./modules/formCalc";
 
 window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_engineer');
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_calc_end'); // formCalc('.popup_calc','.popup_calc_profile', '.popup_calc_end');
-  // tabs('.glazing_slider', '.glazing_block', '.glazing_content', 'active');
-  // tabs('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_calc_end');
 });
-
-/***/ }),
-
-/***/ "./src/js/modules/formCalc.js":
-/*!************************************!*\
-  !*** ./src/js/modules/formCalc.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modals */ "./src/js/modules/modals.js");
-
-
-
-
-var formCalc = function formCalc(firstModalSelector, secondModalSelector, thirdModalSelector) {
-  var firstModal = document.querySelector(firstModalSelector);
-  var secondModal = document.querySelector(secondModalSelector);
-  var thirdModal = document.querySelector(thirdModalSelector);
-  var firstModalTrigger = firstModal.querySelector('.button');
-  var secondModalTrigger = secondModal.querySelector('.button');
-  firstModalTrigger.addEventListener('click', function () {
-    Object(_modals__WEBPACK_IMPORTED_MODULE_0__["closeModal"])(firstModalSelector);
-    Object(_modals__WEBPACK_IMPORTED_MODULE_0__["showModal"])(secondModalSelector);
-  });
-  secondModalTrigger.addEventListener('click', function () {
-    Object(_modals__WEBPACK_IMPORTED_MODULE_0__["closeModal"])(secondModalSelector);
-    Object(_modals__WEBPACK_IMPORTED_MODULE_0__["showModal"])(thirdModalSelector);
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (formCalc);
 
 /***/ }),
 
@@ -17985,16 +17948,20 @@ var showModal = function showModal(modalSelector) {
   document.body.classList.add('modal-open');
 };
 
+var closeAllModals = function closeAllModals() {
+  var windows = document.querySelectorAll('[data-modal]');
+  windows.forEach(function (item) {
+    item.classList.remove('show');
+    item.classList.add('hide');
+  });
+};
+
 var closeModal = function closeModal(modalSelector) {
   var modal = document.querySelector(modalSelector);
-  var windows = document.querySelectorAll('[data-modal]');
   modal.classList.remove('show');
   modal.classList.add('hide');
   document.body.classList.remove('modal-open');
-  windows.forEach(function (item) {
-    console.log(item);
-    item.classList.remove('show');
-  });
+  closeAllModals();
 };
 
 var modals = function modals() {
@@ -18009,6 +17976,7 @@ var modals = function modals() {
           e.preventDefault();
         }
 
+        closeAllModals();
         showModal(modalSelector);
       });
     });
@@ -18033,9 +18001,8 @@ var modals = function modals() {
   useModals('.popup_engineer', '.popup_engineer .popup_close', '.popup_engineer_btn');
   useModals('.popup', '.popup .popup_close', '.phone_link');
   useModals('.popup_calc', '.popup_calc_close', '.popup_calc_btn');
-  useModals('.popup_calc_profile', '.popup_calc_profile_close', '.popup_calc_button');
-  useModals('.popup_calc_end', '.popup_calc_end_close', '.popup_calc_profile_button');
-  showModalByTime('.popup', 5000);
+  useModals('.popup_calc_profile', '.popup_calc_profile_close', '.popup_calc_button', false);
+  useModals('.popup_calc_end', '.popup_calc_end_close', '.popup_calc_profile_button', false); // showModalByTime('.popup', 5000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
