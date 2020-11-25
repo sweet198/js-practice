@@ -6,9 +6,13 @@ import tabs from './modules/tabs';
 // import tabs from './modules/tabsExample';
 
 import forms from './modules/forms';
-// import formCalc from "./modules/formCalc";
+import changeModalState from './modules/changeModalState';
 
 window.addEventListener('DOMContentLoaded', () => {
+
+    let modalState = {};
+
+    changeModalState(modalState);
     modals();
     tabs();
     forms('.popup_engineer');
