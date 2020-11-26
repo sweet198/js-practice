@@ -1,5 +1,3 @@
-'use strict'
-
 const tabs = ()  => {
 
     function useTabs(tabsLinksSelector, tabsSelector, activeClass, display = 'block') {

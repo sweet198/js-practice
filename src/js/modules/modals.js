@@ -1,5 +1,3 @@
-'use strict';
-
 const showModal = (modalSelector) => {
     const modal = document.querySelector(modalSelector);
 
