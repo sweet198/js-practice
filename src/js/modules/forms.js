@@ -1,7 +1,7 @@
 import {closeModal} from './modals';
 import checkNumInputs from './checkNumInputs';
 
-const forms = (modalSelector) => {
+const forms = (modalSelector, state) => {
     const form = document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
 
@@ -38,7 +38,11 @@ const forms = (modalSelector) => {
             item.appendChild(statusMessage);
 
             const formData = new FormData(item);
-
+            if (state) {
+                for (let key in state) {
+                    formData.append(key, state[key]);
+                }
+            }
             postData('assets/server.php', formData)
                 .then(res => {
                     console.log(res);

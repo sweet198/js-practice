@@ -16,5 +16,5 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs();
     forms('.popup_engineer');
     forms('.popup');
-    forms('.popup_calc_end');
+    forms('.popup_calc_end', modalState);
 })

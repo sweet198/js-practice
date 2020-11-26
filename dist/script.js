@@ -17813,7 +17813,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_engineer');
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_calc_end');
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_calc_end', modalState);
 });
 
 /***/ }),
@@ -17835,9 +17835,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var changeModalState = function changeModalState(state) {
   var windowForm = document.querySelectorAll('.balcon_icons_img');
-  var windowWidth = document.querySelector('#width');
-  var windowHeight = document.querySelector('#height');
-  var windowType = document.querySelector('#view_type');
+  var windowWidth = document.querySelectorAll('#width');
+  var windowHeight = document.querySelectorAll('#height');
+  var windowType = document.querySelectorAll('#view_type');
   var windowProfile = document.querySelectorAll('.checkbox');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_1__["default"])('#width');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_1__["default"])('#height');
@@ -17845,13 +17845,42 @@ var changeModalState = function changeModalState(state) {
   function bindActionToElems(event, elem, prop) {
     elem.forEach(function (item, i) {
       item.addEventListener(event, function () {
-        state[prop] = i;
+        switch (item.nodeName) {
+          case 'SPAN':
+            state[prop] = i;
+            break;
+
+          case 'INPUT':
+            if (item.getAttribute('type') === 'checkbox') {
+              i === 0 ? state[prop] = 'Холодное' : state[prop] = 'Тёплое';
+              elem.forEach(function (box, j) {
+                box.checked = false;
+
+                if (i === j) {
+                  box.checked = true;
+                }
+              });
+            } else {
+              state[prop] = item.value;
+            }
+
+            break;
+
+          case 'SELECT':
+            state[prop] = item.value;
+            break;
+        }
+
         console.log(state);
       });
     });
   }
 
   bindActionToElems('click', windowForm, 'form');
+  bindActionToElems('input', windowHeight, 'height');
+  bindActionToElems('input', windowWidth, 'width');
+  bindActionToElems('change', windowType, 'type');
+  bindActionToElems('change', windowProfile, 'profile');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (changeModalState);
@@ -17916,7 +17945,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var forms = function forms(modalSelector) {
+var forms = function forms(modalSelector, state) {
   var form = document.querySelectorAll('form');
   var inputs = document.querySelectorAll('input');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_6__["default"])('input[name="user_phone"]');
@@ -17968,6 +17997,13 @@ var forms = function forms(modalSelector) {
       statusMessage.classList.add('status');
       item.appendChild(statusMessage);
       var formData = new FormData(item);
+
+      if (state) {
+        for (var key in state) {
+          formData.append(key, state[key]);
+        }
+      }
+
       postData('assets/server.php', formData).then(function (res) {
         console.log(res);
         statusMessage.textContent = message.success;
