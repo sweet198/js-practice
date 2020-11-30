@@ -17811,9 +17811,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__["default"])(modalState);
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_engineer');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])('.popup_calc_end', modalState);
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
 });
 
 /***/ }),
@@ -17945,7 +17943,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var forms = function forms(modalSelector, state) {
+var forms = function forms(state) {
   var form = document.querySelectorAll('form');
   var inputs = document.querySelectorAll('input');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_6__["default"])('input[name="user_phone"]');
@@ -17998,7 +17996,7 @@ var forms = function forms(modalSelector, state) {
       item.appendChild(statusMessage);
       var formData = new FormData(item);
 
-      if (state) {
+      if (item.getAttribute('data-calc') === 'end') {
         for (var key in state) {
           formData.append(key, state[key]);
         }
@@ -18011,7 +18009,7 @@ var forms = function forms(modalSelector, state) {
         return statusMessage.textContent = message.failure;
       }).finally(function () {
         clearInputs();
-        Object(_modals__WEBPACK_IMPORTED_MODULE_5__["closeModal"])(modalSelector);
+        Object(_modals__WEBPACK_IMPORTED_MODULE_5__["closeAllModals"])();
         setTimeout(function () {
           statusMessage.remove();
         }, 5000);
@@ -18028,13 +18026,13 @@ var forms = function forms(modalSelector, state) {
 /*!**********************************!*\
   !*** ./src/js/modules/modals.js ***!
   \**********************************/
-/*! exports provided: default, showModal, closeModal */
+/*! exports provided: default, showModal, closeAllModals */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModal", function() { return showModal; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModal", function() { return closeModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeAllModals", function() { return closeAllModals; });
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -18052,14 +18050,7 @@ var closeAllModals = function closeAllModals() {
     item.classList.remove('show');
     item.classList.add('hide');
   });
-};
-
-var closeModal = function closeModal(modalSelector) {
-  var modal = document.querySelector(modalSelector);
-  modal.classList.remove('show');
-  modal.classList.add('hide');
   document.body.classList.remove('modal-open');
-  closeAllModals();
 };
 
 var modals = function modals() {
@@ -18082,11 +18073,11 @@ var modals = function modals() {
       var target = e.target;
 
       if (target === modal && closeClickOverlay) {
-        closeModal(modalSelector);
+        closeAllModals();
       }
     });
     close.addEventListener('click', function () {
-      closeModal(modalSelector);
+      closeAllModals();
     });
   }
 

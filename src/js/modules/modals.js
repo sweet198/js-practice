@@ -13,15 +13,7 @@ const closeAllModals = () => {
         item.classList.remove('show');
         item.classList.add('hide');
     });
-}
-
-const closeModal = (modalSelector) => {
-    const modal = document.querySelector(modalSelector);
-
-    modal.classList.remove('show');
-    modal.classList.add('hide');
     document.body.classList.remove('modal-open');
-    closeAllModals();
 }
 
 const modals = () => {
@@ -44,12 +36,12 @@ const modals = () => {
         modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target === modal && closeClickOverlay) {
-                closeModal(modalSelector);
+                closeAllModals();
             }
         });
 
         close.addEventListener('click', () => {
-            closeModal(modalSelector);
+            closeAllModals();
         });
     }
 
@@ -67,4 +59,4 @@ const modals = () => {
 }
 
 export default modals;
-export {showModal, closeModal};
+export {showModal, closeAllModals};
