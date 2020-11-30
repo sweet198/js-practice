@@ -5,6 +5,7 @@ import tabs from './modules/tabs';
 
 import forms from './modules/forms';
 import changeModalState from './modules/changeModalState';
+import timer from "./modules/timer";
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -15,4 +16,5 @@ window.addEventListener('DOMContentLoaded', () => {
     modals();
     tabs();
     forms(modalState);
+    timer('2021-02-05');
 })
