@@ -17938,7 +17938,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
-  Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])('2021-02-05');
+  Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])('#timer', '2021-02-05');
 });
 
 /***/ }),
@@ -18294,7 +18294,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var timer = function timer(date) {
+var timer = function timer(selector, date) {
   var endDate = new Date(date);
 
   var showMessage = function showMessage() {
@@ -18321,7 +18321,7 @@ var timer = function timer(date) {
   };
 
   var setRemainsTime = function setRemainsTime() {
-    var timer = document.querySelector('#timer');
+    var timer = document.querySelector(selector);
     var days = timer.querySelector('#days');
     var hours = timer.querySelector('#hours');
     var minutes = timer.querySelector('#minutes');
@@ -18344,11 +18344,10 @@ var timer = function timer(date) {
     if (remainsTime['total'] <= 0) {
       clearInterval(timerInterval);
     }
-
-    var timerInterval = setInterval(setRemainsTime, 1000);
   };
 
   setRemainsTime();
+  var timerInterval = setInterval(setRemainsTime, 1000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (timer);

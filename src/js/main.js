@@ -16,5 +16,5 @@ window.addEventListener('DOMContentLoaded', () => {
     modals();
     tabs();
     forms(modalState);
-    timer('2021-02-05');
+    timer('#timer','2021-02-05');
 })

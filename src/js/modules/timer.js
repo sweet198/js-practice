@@ -1,4 +1,4 @@
-const timer = (date) => {
+const timer = (selector, date) => {
     const endDate = new Date(date);
 
     const showMessage = () => {
@@ -27,7 +27,7 @@ const timer = (date) => {
     };
 
     const setRemainsTime = () => {
-        const timer = document.querySelector('#timer');
+        const timer = document.querySelector(selector);
         const days = timer.querySelector('#days');
         const hours = timer.querySelector('#hours');
         const minutes = timer.querySelector('#minutes');
@@ -51,10 +51,10 @@ const timer = (date) => {
         if (remainsTime['total'] <= 0) {
             clearInterval(timerInterval);
         }
-
-        const timerInterval = setInterval(setRemainsTime, 1000);
     }
     setRemainsTime();
+
+    const timerInterval = setInterval(setRemainsTime, 1000);
 }
 
 export default timer;
