@@ -1,16 +1,16 @@
-const timer = (selector, date) => {
-    const endDate = new Date(date);
+const timer = (selector, deadline) => {
+    const endTime = new Date(deadline);
 
     const showMessage = () => {
         const monthArr = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'декабря'];
         const saleMessage = document.querySelector('.sale_subtitle');
-        saleMessage.innerHTML = `Успей сэкономить на остеклении! Только до ${endDate.getDate()} ${monthArr[endDate.getMonth()]}!`;
+        saleMessage.innerHTML = `Успей сэкономить на остеклении! Только до ${endTime.getDate()} ${monthArr[endTime.getMonth()]}!`;
     }
 
     showMessage();
 
     const getRemainsTime = () => {
-        const time = Date.parse(date) - Date.parse(new Date());
+        const time = Date.parse(deadline) - Date.parse(new Date());
 
         const days = Math.floor(time / (1000 * 60 * 60 * 24));
         const hours = Math.floor((time / (1000 * 60 * 60) % 24));
@@ -33,7 +33,7 @@ const timer = (selector, date) => {
         const minutes = timer.querySelector('#minutes');
         const seconds = timer.querySelector('#seconds');
 
-        const remainsTime = getRemainsTime();
+        const remainsTime = getRemainsTime(deadline);
 
         const addZero = (num) => {
             if (num >= 0 && num < 10) {

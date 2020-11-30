@@ -18294,19 +18294,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var timer = function timer(selector, date) {
-  var endDate = new Date(date);
+var timer = function timer(selector, deadline) {
+  var endTime = new Date(deadline);
 
   var showMessage = function showMessage() {
     var monthArr = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'декабря'];
     var saleMessage = document.querySelector('.sale_subtitle');
-    saleMessage.innerHTML = "\u0423\u0441\u043F\u0435\u0439 \u0441\u044D\u043A\u043E\u043D\u043E\u043C\u0438\u0442\u044C \u043D\u0430 \u043E\u0441\u0442\u0435\u043A\u043B\u0435\u043D\u0438\u0438! \u0422\u043E\u043B\u044C\u043A\u043E \u0434\u043E ".concat(endDate.getDate(), " ").concat(monthArr[endDate.getMonth()], "!");
+    saleMessage.innerHTML = "\u0423\u0441\u043F\u0435\u0439 \u0441\u044D\u043A\u043E\u043D\u043E\u043C\u0438\u0442\u044C \u043D\u0430 \u043E\u0441\u0442\u0435\u043A\u043B\u0435\u043D\u0438\u0438! \u0422\u043E\u043B\u044C\u043A\u043E \u0434\u043E ".concat(endTime.getDate(), " ").concat(monthArr[endTime.getMonth()], "!");
   };
 
   showMessage();
 
   var getRemainsTime = function getRemainsTime() {
-    var time = Date.parse(date) - Date.parse(new Date());
+    var time = Date.parse(deadline) - Date.parse(new Date());
     var days = Math.floor(time / (1000 * 60 * 60 * 24));
     var hours = Math.floor(time / (1000 * 60 * 60) % 24);
     var minutes = Math.floor(time / (1000 / 60) % 60);
@@ -18326,7 +18326,7 @@ var timer = function timer(selector, date) {
     var hours = timer.querySelector('#hours');
     var minutes = timer.querySelector('#minutes');
     var seconds = timer.querySelector('#seconds');
-    var remainsTime = getRemainsTime();
+    var remainsTime = getRemainsTime(deadline);
 
     var addZero = function addZero(num) {
       if (num >= 0 && num < 10) {
