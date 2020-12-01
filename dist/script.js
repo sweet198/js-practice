@@ -17923,9 +17923,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
 /* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
 /* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
+/* harmony import */ var _modules_pictures__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/pictures */ "./src/js/modules/pictures.js");
 
 
  // import tabs from './modules/tabsExample';
+
 
 
 
@@ -17939,6 +17941,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
   Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])('#timer', '2021-02-05');
+  Object(_modules_pictures__WEBPACK_IMPORTED_MODULE_6__["default"])();
 });
 
 /***/ }),
@@ -18223,6 +18226,43 @@ var modals = function modals() {
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
 
+
+/***/ }),
+
+/***/ "./src/js/modules/pictures.js":
+/*!************************************!*\
+  !*** ./src/js/modules/pictures.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function pictures() {
+  var container = document.querySelector('.works .container');
+  console.log(container);
+  var pictures = document.querySelectorAll('a > .preview');
+  var popup = document.createElement('div');
+  popup.classList.add('popup');
+  popup.classList.add('hide');
+  container.appendChild(popup);
+  var img = document.createElement('img');
+  popup.appendChild(img);
+  pictures.forEach(function (item, i) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      img.src = "assets/img/our_works/big_img/".concat(i + 1, ".png");
+      popup.classList.add('show');
+      popup.classList.remove('hide');
+    });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (pictures);
 
 /***/ }),
 

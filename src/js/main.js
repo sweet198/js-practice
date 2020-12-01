@@ -6,6 +6,7 @@ import tabs from './modules/tabs';
 import forms from './modules/forms';
 import changeModalState from './modules/changeModalState';
 import timer from "./modules/timer";
+import pictures from "./modules/pictures";
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -17,4 +18,5 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs();
     forms(modalState);
     timer('#timer','2021-02-05');
+    pictures();
 })
