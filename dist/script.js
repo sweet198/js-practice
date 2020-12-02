@@ -18240,25 +18240,33 @@ var modals = function modals() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals */ "./src/js/modules/modals.js");
+
 
 
 function pictures() {
-  var container = document.querySelector('.works .container');
-  console.log(container);
   var pictures = document.querySelectorAll('a > .preview');
   var popup = document.createElement('div');
+  popup.classList.add('popup_picture');
   popup.classList.add('popup');
-  popup.classList.add('hide');
-  container.appendChild(popup);
+  popup.setAttribute('data-modal', 'true');
+  document.body.appendChild(popup);
   var img = document.createElement('img');
+  img.style.cssText = "\n        position: fixed;\n        top: 10%;\n        left: 50%;\n        transform: translateX(-50%);\n    ";
   popup.appendChild(img);
   pictures.forEach(function (item, i) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
       img.src = "assets/img/our_works/big_img/".concat(i + 1, ".png");
-      popup.classList.add('show');
-      popup.classList.remove('hide');
+      Object(_modals__WEBPACK_IMPORTED_MODULE_1__["showModal"])('.popup_picture');
     });
+  });
+  popup.addEventListener('click', function (e) {
+    var target = e.target;
+
+    if (target === popup) {
+      Object(_modals__WEBPACK_IMPORTED_MODULE_1__["closeAllModals"])();
+    }
   });
 }
 
