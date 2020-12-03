@@ -16,8 +16,6 @@ function pictures () {
         transform: translateX(-50%);
     `;
 
-
-
     popup.appendChild(img);
 
     pictures.forEach((item, i) => {
@@ -33,7 +31,35 @@ function pictures () {
             closeAllModals();
         }
     });
+    /*const picturesParent = document.querySelector('.works');
+    const picturePopup = document.createElement('div');
+    const bigPicture = document.createElement('img');
 
+    picturePopup.classList.add('popup');
+    picturesParent.appendChild(picturePopup);
+
+    picturePopup.style.cssText = `
+        justify-content: center;
+        align-items: center;
+        display: none;       
+    `;
+
+    picturePopup.appendChild(bigPicture);
+
+    picturesParent.addEventListener('click', (e) => {
+        e.preventDefault();
+        let target = e.target;
+
+        if (target && target.classList.contains('preview')) {
+            picturePopup.style.display ='flex';
+            const path = target.parentNode.getAttribute('href');
+            bigPicture.setAttribute('src', path);
+        }
+
+        if (target && target.matches('div.popup')) {
+            picturePopup.style.display ='none';
+        }*/
+    });
 }
 
 export default pictures;

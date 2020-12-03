@@ -17924,6 +17924,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
 /* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
 /* harmony import */ var _modules_pictures__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/pictures */ "./src/js/modules/pictures.js");
+/* harmony import */ var _modules_pictures__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_pictures__WEBPACK_IMPORTED_MODULE_6__);
 
 
  // import tabs from './modules/tabsExample';
@@ -17941,7 +17942,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
   Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])('#timer', '2021-02-05');
-  Object(_modules_pictures__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  _modules_pictures__WEBPACK_IMPORTED_MODULE_6___default()();
 });
 
 /***/ }),
@@ -18233,44 +18234,10 @@ var modals = function modals() {
 /*!************************************!*\
   !*** ./src/js/modules/pictures.js ***!
   \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals */ "./src/js/modules/modals.js");
-
-
-
-function pictures() {
-  var pictures = document.querySelectorAll('a > .preview');
-  var popup = document.createElement('div');
-  popup.classList.add('popup_picture');
-  popup.classList.add('popup');
-  popup.setAttribute('data-modal', 'true');
-  document.body.appendChild(popup);
-  var img = document.createElement('img');
-  img.style.cssText = "\n        position: fixed;\n        top: 10%;\n        left: 50%;\n        transform: translateX(-50%);\n    ";
-  popup.appendChild(img);
-  pictures.forEach(function (item, i) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
-      img.src = "assets/img/our_works/big_img/".concat(i + 1, ".png");
-      Object(_modals__WEBPACK_IMPORTED_MODULE_1__["showModal"])('.popup_picture');
-    });
-  });
-  popup.addEventListener('click', function (e) {
-    var target = e.target;
-
-    if (target === popup) {
-      Object(_modals__WEBPACK_IMPORTED_MODULE_1__["closeAllModals"])();
-    }
-  });
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (pictures);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: E:\\web\\GitHub\\JS-practice1\\src\\js\\modules\\pictures.js: Unexpected token (62:5)\n\n\u001b[0m \u001b[90m 60 | \u001b[39m\u001b[90m            picturePopup.style.display ='none';\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 61 | \u001b[39m\u001b[90m        }*/\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 62 | \u001b[39m    })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 63 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 64 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 65 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m pictures\u001b[33m;\u001b[39m\u001b[0m\n    at Parser.raise (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:6975:17)\n    at Parser.unexpected (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:8368:16)\n    at Parser.parseExprAtom (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:9627:20)\n    at Parser.parseExprSubscripts (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:9210:23)\n    at Parser.parseMaybeUnary (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:9190:21)\n    at Parser.parseExprOps (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:9056:23)\n    at Parser.parseMaybeConditional (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:9029:23)\n    at Parser.parseMaybeAssign (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:8975:21)\n    at Parser.parseExpression (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:8925:23)\n    at Parser.parseStatementContent (E:\\web\\GitHub\\JS-practice1\\node_modules\\@babel\\parser\\lib\\index.js:10785:23)");
 
 /***/ }),
 
