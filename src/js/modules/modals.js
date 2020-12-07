@@ -4,6 +4,7 @@ const showModal = (modalSelector) => {
     modal.classList.add('show');
     modal.classList.remove('hide');
     document.body.classList.add('modal-open');
+    document.body.style.marginRight = `${calcScroll()}px`;
 }
 
 const closeAllModals = () => {
@@ -14,6 +15,21 @@ const closeAllModals = () => {
         item.classList.add('hide');
     });
     document.body.classList.remove('modal-open');
+    document.body.style.marginRight = '0px';
+}
+
+function calcScroll() {
+    let div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+
+    document.body.appendChild(div);
+    let scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+
+    return scrollWidth;
 }
 
 const modals = () => {

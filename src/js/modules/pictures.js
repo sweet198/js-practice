@@ -58,8 +58,8 @@ function pictures () {
 
         if (target && target.matches('div.popup')) {
             picturePopup.style.display ='none';
-        }*/
-    });
+        }
+    });*/
 }
 
 export default pictures;
